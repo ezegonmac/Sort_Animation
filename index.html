@@ -6,6 +6,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<link rel="stylesheet" href="sass/styles.css" />
+		<link rel="stylesheet" href="vendor/fontawesome/fontawesome.css" />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+			rel="stylesheet"
+		/>
 
 		<title>Document</title>
 	</head>
@@ -13,7 +19,7 @@
 		<div id="container">
 			<div id="canvas">
 				<div id="row1" class="row">
-					<div class="array">
+					<div id="array-1" class="array">
 						<div class="item">1</div>
 						<div class="item">7</div>
 						<div class="item">3</div>
@@ -32,10 +38,31 @@
 			</div>
 
 			<div id="toolbar">
-				<div class="bar-item"></div>
-				<div class="bar-item"></div>
-				<div class="bar-item"></div>
+				<button id="btn-unsort" class="bar-item">
+					<div class="content">
+						<i class="fas fa-random"></i>
+						<p>Unsort</p>
+					</div>
+				</button>
+				<button id="btn-random" class="bar-item">
+					<div class="content">
+						<i class="fas fa-dice"></i>
+						<p>Randomize</p>
+					</div>
+				</button>
+				<button id="btn-sort" class="bar-item">
+					<div class="content">
+						<i class="fas fa-sort-numeric-up-alt"></i>
+						<p>Sort</p>
+					</div>
+				</button>
 			</div>
 		</div>
+
+		<!-- <script src="vendor/fontawesome/fontawesome.js"></script> -->
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/merge_sort.js"></script>
+		<script src="js/toolbar.js"></script>
 	</body>
 </html>
