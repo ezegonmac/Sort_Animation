@@ -1,15 +1,14 @@
 $(document).ready(function () {
-	generateArray();
+	let ls1 = new List(1, 1);
 
-	//resizeArray();
-	//positionArray();
+	ls1.randomize();
 
-	showArray();
+	initializeToolbar(ls1);
 
 	window.addEventListener("resize", function () {
 		canvasWid = Math.floor($("#canvas").width());
 		canvasHei = Math.floor($("#canvas").height());
 
-		transformArray();
+		ls1.transform();
 	});
 });

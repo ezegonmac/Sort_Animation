@@ -12,6 +12,10 @@ class Item {
 	}
 
 	// SETTERS
+	set id(id) {
+		this.#id = id;
+	}
+
 	set x(x) {
 		this.#x = x;
 	}

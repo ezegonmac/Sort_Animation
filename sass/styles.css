@@ -45,7 +45,7 @@ body {
   height: 100%;
 }
 
-.array {
+.list {
   background-color: white;
   border-radius: 5px;
   -webkit-box-shadow: 0.1em 0.1em 0 black;
@@ -57,7 +57,7 @@ body {
   height: 40px;
 }
 
-.array .item {
+.list .item {
   background-color: purple;
   color: white;
   position: fixed;

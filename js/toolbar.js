@@ -1,5 +1,5 @@
-$(document).ready(function () {
-	$("#btn-unsort").click(unsort);
+function initializeToolbar(mainList) {
+	$("#btn-unsort").click(mainList.unsort);
 
-	$("#btn-random").click(randomize);
-});
+	$("#btn-random").click(mainList.randomize);
+}

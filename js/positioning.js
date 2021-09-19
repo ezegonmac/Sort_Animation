@@ -1,4 +1,5 @@
-let rows = 1;
+let nRows = 3;
+let rows = [];
 
 let itemSize = 30;
 let itemMargin = 5;
@@ -6,63 +7,81 @@ let itemMargin = 5;
 let canvasWid = Math.floor($("#canvas").width());
 let canvasHei = Math.floor($("#canvas").height());
 
-let arrayWid = 0;
-let arrayHei = 0;
+let listWid;
+let listHei;
+
+let rowHei;
+
+// GRID
+function createGrid() {
+	if (nRows > 1) {
+		for (let i = 2; i <= nRows; i++) {
+			let row = $.parseHTML("<div id='row-" + i + "' class='row'></div>");
+			console.log(row);
+
+			$("#canvas").append(row);
+		}
+	}
+}
 
 // TRANSFORM ARRAY
-function transformArray() {
-	resizeArray();
-	positionArray();
+function transformList(list) {
+	resizeList(list);
+	positionList(list);
 
-	resizeItems();
-	positionItems();
+	resizeItems(list);
+	positionItems(list);
 }
 
-function positionArray() {
+function positionList(list) {
 	// X
-	let xPos = canvasWid / 2 - arrayWid / 2;
-	$("#array-1").css("left", xPos.toString() + "px");
+	let x = canvasWid / 2 - listWid / 2;
+	$("#" + list.name).css("left", x.toString() + "px");
+	list.x = x;
 
 	// Y
-	let yPos = canvasHei / 2 - arrayHei / 2;
-	$("#array-1").css("top", yPos.toString() + "px");
+	rowHei = canvasHei / nRows;
+	let y = list.row * rowHei - rowHei / 2 - listHei / 2;
+	$("#" + list.name).css("top", y.toString() + "px");
+	list.y = y;
 }
 
-function resizeArray() {
-	// HEIGHT
-	arrayHei = itemSize + 2 * itemMargin;
-	$("#array-1").css("height", arrayHei.toString() + "px");
-
+function resizeList(list) {
 	//WIDTH
-	arrayWid = arrayLen * (itemSize + itemMargin) + itemMargin;
-	$("#array-1").css("width", arrayWid.toString() + "px");
+	if (list.items.length < 1) {
+		listWid = 2 * (itemSize + itemMargin) + itemMargin;
+		$("#" + list.name).css("width", listWid.toString() + "px");
+	} else {
+		listWid = listLen * (itemSize + itemMargin) + itemMargin;
+		$("#" + list.name).css("width", listWid.toString() + "px");
+	}
+
+	// HEIGHT
+	listHei = itemSize + 2 * itemMargin;
+	$("#" + list.name).css("height", listHei.toString() + "px");
 }
 
-function positionItems() {
-	let xOrigin = canvasWid / 2 - arrayWid / 2;
-	let yOrigin = canvasHei / 2 - arrayHei / 2;
+function positionItems(list) {
+	for (let i = 0; i < list.items.length; i++) {
+		let item = list.items[i];
 
-	//console.log(xOrigin);
-	//console.log(yOrigin);
-	for (let i = 0; i < array.length; i++) {
-		let item = array[i];
+		console.log(item);
 
 		let xOffset = i * (itemSize + itemMargin) + itemMargin;
 		let yOffset = itemMargin;
 
-		let x = xOrigin + xOffset;
-		let y = yOrigin + yOffset;
+		let x = list.x + xOffset;
+		let y = list.y + yOffset;
 
 		// Store values
 		item.x = x;
 		item.y = y;
 
-		console.log(item);
+		//console.log(item);
 
 		// CSS
-		let id = "item-" + i;
-		$("#" + id).css("top", y + "px");
-		$("#" + id).css("left", x + "px");
+		$("#item-" + i).css("left", x + "px");
+		$("#item-" + i).css("top", y + "px");
 	}
 }
 
