@@ -17,6 +17,7 @@ class List {
 		this.id = id;
 		this.row = row;
 		this.name = "list-" + id;
+		this.items = [];
 		this.x = 0;
 		this.y = 0;
 	}
@@ -55,7 +56,7 @@ class List {
 	}
 
 	unsort() {
-		for (let i = list.length - 1; i > 0; i--) {
+		for (let i = this.items.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
 			[this.items[i], this.items[j]] = [this.items[j], this.items[i]];
 

@@ -1,7 +1,8 @@
 $(document).ready(function () {
-	let ls1 = new List(1, 1);
+	const ls1 = new List(1, 1);
 
 	ls1.randomize();
+	ls1.show();
 
 	initializeToolbar(ls1);
 

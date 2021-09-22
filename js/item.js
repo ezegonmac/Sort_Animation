@@ -47,17 +47,8 @@ class Item {
 
 	// TOSTRING
 	toString() {
-		return (
-			"Item[" +
-			"id=" +
-			this.#id +
-			", val=" +
-			this.#val +
-			", (x, y)=(" +
-			this.#x +
-			", " +
-			this.#y +
-			")]"
-		);
+		return `Item[id=${this.#id}, val=${this.#val}, (x, y)=(${this.#x} +, ${
+			this.#y
+		})]`;
 	}
 }
