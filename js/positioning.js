@@ -1,11 +1,8 @@
-let nRows = 3;
-let rows = [];
+const itemSize = 30;
+const itemMargin = 5;
 
-let itemSize = 30;
-let itemMargin = 5;
-
-let canvasWid = Math.floor($("#canvas").width());
-let canvasHei = Math.floor($("#canvas").height());
+const canvasWid = Math.floor($("#canvas").width());
+const canvasHei = Math.floor($("#canvas").height());
 
 let listWid;
 let listHei;
@@ -34,6 +31,9 @@ function transformList(list) {
 }
 
 function positionList(list) {
+	let row = rows[list.row];
+	let nLists = row.lists.length;
+
 	// X
 	let x = canvasWid / 2 - listWid / 2;
 	$("#" + list.name).css("left", x.toString() + "px");

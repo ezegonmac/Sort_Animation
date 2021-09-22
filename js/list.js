@@ -1,9 +1,7 @@
-let list = [];
-
-let listLen = 10;
-let min = -20;
-let max = 20;
-let rangeLen = max - min;
+const listLen = 10;
+const min = -20;
+const max = 20;
+const rangeLen = max - min;
 
 class List {
 	id;
@@ -16,6 +14,7 @@ class List {
 	constructor(id, row) {
 		this.id = id;
 		this.row = row;
+		rows[row + 1].lists.add(id);
 		this.name = "list-" + id;
 		this.items = [];
 		this.x = 0;
@@ -38,6 +37,14 @@ class List {
 
 	show() {
 		// show in HTML
+
+		// 1. LIST
+		let listHTML = $.parseHTML(
+			'<div id="' + this.name + '" class="list"><div>'
+		);
+		$("#row-" + this.row).append(listHTML);
+
+		// 2. ITEMS
 		$("#" + this.name).empty();
 
 		console.log(this.items);
