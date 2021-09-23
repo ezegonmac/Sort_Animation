@@ -2,6 +2,7 @@ const listLen = 10;
 const min = -20;
 const max = 20;
 const rangeLen = max - min;
+const lists = [];
 
 class List {
 	id;
@@ -14,11 +15,21 @@ class List {
 	constructor(id, row) {
 		this.id = id;
 		this.row = row;
-		rows[row + 1].lists.add(id);
 		this.name = "list-" + id;
 		this.items = [];
 		this.x = 0;
 		this.y = 0;
+
+		Row.getRow(row).addList(this);
+		List.getAll().push(this);
+
+		// create HTML OBJ
+		// LIST
+		let listHTML = $.parseHTML(
+			'<div id="' + this.name + '" class="list"><div>'
+		);
+		console.log("#row-" + this.row);
+		$("#row-" + this.row).append(listHTML);
 	}
 
 	randomize() {
@@ -38,16 +49,9 @@ class List {
 	show() {
 		// show in HTML
 
-		// 1. LIST
-		let listHTML = $.parseHTML(
-			'<div id="' + this.name + '" class="list"><div>'
-		);
-		$("#row-" + this.row).append(listHTML);
-
-		// 2. ITEMS
+		// ITEMS
 		$("#" + this.name).empty();
 
-		console.log(this.items);
 		for (let item of this.items) {
 			let html = $.parseHTML(
 				"<div id='item-" +
@@ -88,5 +92,9 @@ class List {
 
 	transform() {
 		transformList(this);
+	}
+
+	static getAll() {
+		return lists;
 	}
 }

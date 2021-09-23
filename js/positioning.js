@@ -31,19 +31,27 @@ function transformList(list) {
 }
 
 function positionList(list) {
-	let row = rows[list.row];
-	let nLists = row.lists.length;
-
-	// X
-	let x = canvasWid / 2 - listWid / 2;
-	$("#" + list.name).css("left", x.toString() + "px");
-	list.x = x;
-
-	// Y
+	let row = Row.getRow(list.row);
+	let lists = Array.from(row.lists);
+	let numListsInRow = lists.length;
+	let colWid = canvasWid / (numListsInRow + 1);
 	rowHei = canvasHei / nRows;
-	let y = list.row * rowHei - rowHei / 2 - listHei / 2;
-	$("#" + list.name).css("top", y.toString() + "px");
-	list.y = y;
+
+	for (let i = 0; i < numListsInRow; i++) {
+		// X
+		let list = lists[i];
+		console.log(list);
+		let pos = i + 1;
+
+		let x = colWid * pos - listWid / 2;
+		$("#" + list.name).css("left", x.toString() + "px");
+		list.x = x;
+
+		// Y
+		let y = list.row * rowHei - rowHei / 2 - listHei / 2;
+		$("#" + list.name).css("top", y.toString() + "px");
+		list.y = y;
+	}
 }
 
 function resizeList(list) {
@@ -65,7 +73,7 @@ function positionItems(list) {
 	for (let i = 0; i < list.items.length; i++) {
 		let item = list.items[i];
 
-		console.log(item);
+		//console.log(item);
 
 		let xOffset = i * (itemSize + itemMargin) + itemMargin;
 		let yOffset = itemMargin;

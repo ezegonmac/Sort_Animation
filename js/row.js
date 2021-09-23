@@ -2,9 +2,12 @@ const nRows = 3;
 let rows = [];
 
 class Row {
+	#id;
+	#lists;
+
 	constructor(id) {
-		this.id = id;
-		this.lists = new Set();
+		this.#id = id;
+		this.#lists = new Set();
 	}
 
 	static createRows() {
@@ -19,11 +22,25 @@ class Row {
 		}
 	}
 
-	addList(listId) {
-		this.lists.add(listId);
+	static getRow(id) {
+		return rows[id - 1];
 	}
 
-	removeList(listId) {
-		this.lists.delete(listId);
+	static getAll() {
+		return rows;
+	}
+
+	addList(list) {
+		this.#lists.add(list);
+	}
+
+	removeList(list) {
+		this.#lists.delete(list);
+	}
+
+	// GETTERS AND SETTERS
+
+	get lists() {
+		return this.#lists;
 	}
 }
