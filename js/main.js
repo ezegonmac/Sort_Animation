@@ -1,3 +1,9 @@
+import * as $ from "../vendor/jquery/jquery.min";
+import List from "list.js";
+import Row from "row.js";
+import Toolbar from "row.js";
+import Positioning from "./positioning";
+
 $(document).ready(function () {
 	Row.createRows();
 
@@ -6,15 +12,8 @@ $(document).ready(function () {
 	mainList.randomize();
 	mainList.show();
 
-	initializeToolbar(mainList);
-
-	window.addEventListener("resize", function () {
-		canvasWid = Math.floor($("#canvas").width());
-		canvasHei = Math.floor($("#canvas").height());
-
-		// TODO: transform all lists not only 1
-		mainList.transform();
-	});
+	Toolbar.initializeToolbar(mainList);
+	Positioning.createResizeListener();
 
 	// TEST
 

@@ -1,3 +1,6 @@
+import * as $ from "../vendor/jquery/jquery.min";
+import Item from "./item.js";
+
 const listLen = 10;
 const min = -20;
 const max = 20;
@@ -11,6 +14,8 @@ class List {
 	x;
 	y;
 	row;
+
+	// TODO: add attributes for width and height
 
 	constructor(id, row) {
 		this.id = id;
@@ -94,7 +99,17 @@ class List {
 		transformList(this);
 	}
 
+	reTransform() {
+		reTransformList(this);
+	}
+
 	static getAll() {
 		return lists;
 	}
+
+	static getListLen() {
+		return listLen;
+	}
 }
+
+export { List };

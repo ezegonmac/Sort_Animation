@@ -1,9 +1,14 @@
-function initializeToolbar(mainList) {
-	$("#btn-unsort").click(() => {
-		mainList.unsort();
-	});
+import * as $ from "../vendor/jquery/jquery.min";
+class Toolbar {
+	static initializeToolbar(mainList) {
+		$("#btn-unsort").click(() => {
+			mainList.unsort();
+		});
 
-	$("#btn-random").click(() => {
-		mainList.randomize();
-	});
+		$("#btn-random").click(() => {
+			mainList.randomize();
+		});
+	}
 }
+
+export { Toolbar };

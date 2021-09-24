@@ -1,3 +1,5 @@
+import * as $ from "../vendor/jquery/jquery.min";
+
 const nRows = 3;
 let rows = [];
 
@@ -22,6 +24,10 @@ class Row {
 		}
 	}
 
+	static getNumRows() {
+		return nRows;
+	}
+
 	static getRow(id) {
 		return rows[id - 1];
 	}
@@ -40,7 +46,13 @@ class Row {
 
 	// GETTERS AND SETTERS
 
+	get id() {
+		return this.#id;
+	}
+
 	get lists() {
 		return this.#lists;
 	}
 }
+
+export { Row };
